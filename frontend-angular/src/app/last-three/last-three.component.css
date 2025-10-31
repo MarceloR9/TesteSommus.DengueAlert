@@ -1,0 +1,29 @@
+.container {
+  padding: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.cards {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+
+.card {
+  border:1px solid #ddd;
+  border-radius:6px;
+  padding:12px;
+  width:260px;
+  background:#fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.no-data {
+  color:#c00;
+}
+
+button {
+  margin-top:12px;
+  padding:8px 12px;
+}

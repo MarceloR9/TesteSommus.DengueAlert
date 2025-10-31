@@ -1,0 +1,48 @@
+<div class="container">
+  <h3>Últimas 3 semanas de casos de Dengue em Belo Horizonte</h3>
+
+  <br>
+
+  <h4>Aperte o botão para ver os dados</h4>
+
+  <br>
+
+  <div class="button-group">
+
+    <button (click)="toggleVisibility()">
+      {{ showData ? 'Fechar Dados' : 'Ver Dados' }}
+    </button>
+
+    <button *ngIf="showData" (click)="load()" [disabled]="loading" class="update-button">
+      {{ loading ? 'Atualizando...' : 'Atualizar Dados' }}
+    </button>
+  </div>
+
+  <hr *ngIf="showData" class="separator">
+
+  <div *ngIf="showData">
+
+    <div *ngIf="loading && (weeks === null || weeks.length === 0)">Carregando...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <div class="cards" *ngIf="!loading && weeks && weeks.length > 0">
+      <div class="card" *ngFor="let w of weeks">
+        <h4>{{ w.semana_epidemiologica }}</h4>
+
+        <div *ngIf="w.error" class="no-data">Sem dados: {{ w.error }}</div>
+
+        <div *ngIf="!w.error">
+          <p>Casos estimados: <strong>{{ w.casos_est ?? '-' }}</strong></p>
+          <p>Casos notificados: <strong>{{ w.casos_notificados ?? '-' }}</strong></p>
+          <p>Nível de alerta: <strong>{{ w.nivel_alerta ?? '-' }}</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!loading && weeks && weeks.length === 0">
+      Nenhum dado de alerta encontrado para as últimas 3 semanas.
+    </div>
+
+  </div>
+
+  </div>
